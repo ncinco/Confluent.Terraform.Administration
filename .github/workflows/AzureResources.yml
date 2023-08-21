@@ -1,0 +1,22 @@
+name: 'AzureResources'
+ 
+on:
+  workflow_dispatch:
+
+jobs:
+  dev:
+    name: 'dev'
+    environment: dev
+    env:
+      TERM: linux
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+ 
+    steps:
+    - uses: hashicorp/setup-terraform@v2
+
+    - name: 'Checkout'
+      id: checkout
+      uses: actions/checkout@v3
