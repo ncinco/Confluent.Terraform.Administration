@@ -13,20 +13,11 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "Terraform_State"
     storage_account_name = "confluentstate"
-    container_name       = "trusted"
+    container_name       = "administration"
     key                  = "cluster.tfstate"
   }
 }
 
 provider "azurerm" {
   features {}
-}
-
-module "clusters" {
-  source = "../../modules/clusters"
-	
-  environment                = var.environment
-  cluster_name               = var.cluster_name
-  cluster_cloud              = var.cluster_cloud
-  cluster_region             = var.cluster_region
 }

@@ -8,11 +8,18 @@ jobs:
     name: 'dev'
     environment: dev
     env:
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SKIP_PROVIDER_REGISTRATION: true
+      
       TERM: linux
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
+        working-directory: ./azureresources
  
     steps:
     - uses: hashicorp/setup-terraform@v2
@@ -20,3 +27,116 @@ jobs:
     - name: 'Checkout'
       id: checkout
       uses: actions/checkout@v3
+
+    - name: 'Terraform Format'
+      id: format
+      run: terraform fmt
+         
+    - name: 'Terraform Init'
+      id: init
+      run: terraform init --backend-config=backend_dev.conf
+ 
+    - name: 'Terraform Validate'
+      id: validate
+      run: terraform validate
+
+    - name: 'Terraform Plan'
+      id: plan
+      run: terraform plan
+ 
+    - name: Terraform Apply
+      id: apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply --auto-approve
+
+  uat:
+    name: 'uat'
+    environment: uat
+    needs: dev
+    env:
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SKIP_PROVIDER_REGISTRATION: true
+      
+      TERM: linux
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./azureresources
+  
+    steps:
+    - uses: hashicorp/setup-terraform@v2
+
+    - name: 'Checkout'
+      id: checkout
+      uses: actions/checkout@v3
+
+    - name: 'Terraform Format'
+      id: format
+      run: terraform fmt
+          
+    - name: 'Terraform Init'
+      id: init
+      run: terraform init --backend-config=backend_uat.conf
+  
+    - name: 'Terraform Validate'
+      id: validate
+      run: terraform validate
+
+    - name: 'Terraform Plan'
+      id: plan
+      run: terraform plan
+  
+    - name: Terraform Apply
+      id: apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply --auto-approve
+
+  prod:
+    name: 'prod'
+    environment: prod
+    needs: uat
+    env:
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SKIP_PROVIDER_REGISTRATION: true
+      
+      TERM: linux
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./azureresources
+  
+    steps:
+    - uses: hashicorp/setup-terraform@v2
+
+    - name: 'Checkout'
+      id: checkout
+      uses: actions/checkout@v3
+
+    - name: 'Terraform Format'
+      id: format
+      run: terraform fmt
+          
+    - name: 'Terraform Init'
+      id: init
+      run: terraform init --backend-config=backend_prod.conf
+  
+    - name: 'Terraform Validate'
+      id: validate
+      run: terraform validate
+
+    - name: 'Terraform Plan'
+      id: plan
+      run: terraform plan
+  
+    - name: Terraform Apply
+      id: apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply --auto-approve
