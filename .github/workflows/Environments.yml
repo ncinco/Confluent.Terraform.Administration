@@ -14,3 +14,10 @@ jobs:
     defaults:
       run:
         shell: bash
+
+    steps:
+    - uses: hashicorp/setup-terraform@v2
+
+    - name: 'Checkout'
+      id: checkout
+      uses: actions/checkout@v3
