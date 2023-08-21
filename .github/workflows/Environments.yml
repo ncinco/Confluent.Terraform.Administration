@@ -1,1 +1,16 @@
+name: 'Environments'
+ 
+on:
+  workflow_dispatch:
 
+jobs:
+  dev:
+    name: 'dev'
+    environment: dev
+    env:
+      
+      TERM: linux
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
