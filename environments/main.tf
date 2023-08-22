@@ -25,9 +25,9 @@ resource "confluent_environment" "environment" {
 }
 
 data "confluent_schema_registry_region" "schema_registry_region" {
-  cloud   = var.cloud
-  region  = var.region
-  package = var.package
+  cloud   = var.schema_registry_cloud
+  region  = var.schema_registry_region
+  package = var.schema_registry_package
 }
 
 resource "confluent_schema_registry_cluster" "schema_registry_cluster" {
