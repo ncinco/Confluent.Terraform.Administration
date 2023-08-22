@@ -17,25 +17,8 @@ provider "azurerm" {
   features {}
 }
 
-resource "confluent_environment" "dev" {
-  display_name = "dev"
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "confluent_environment" "uat" {
-  display_name = "uat"
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "confluent_environment" "prod" {
-  display_name = "prod"
-
+resource "confluent_environment" "environment" {
+  display_name = var.environment
   lifecycle {
     prevent_destroy = true
   }
