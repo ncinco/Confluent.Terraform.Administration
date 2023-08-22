@@ -45,7 +45,7 @@ jobs:
   uat:
     name: 'uat'
     environment: uat
-    # needs: dev
+    needs: dev
     runs-on: ubuntu-latest
   
     steps:
@@ -71,7 +71,7 @@ jobs:
   prod:
     name: 'prod'
     environment: prod
-    # needs: uat
+    needs: uat
     runs-on: ubuntu-latest
   
     steps:
