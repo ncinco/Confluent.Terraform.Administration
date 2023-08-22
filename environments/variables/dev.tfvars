@@ -6,17 +6,17 @@ schema_registry = {
   package       = "ESSENTIALS"
 }
 
-kafka_clusters = {[
-  (
-    display_name = "Cluster_0"
-    availability = "SINGLE_ZONE"
-    cloud        = "AZURE"
-    region       = "australiaeast"
-  ),
-  (
-    display_name = "Cluster_1"
-    availability = "SINGLE_ZONE"
-    cloud        = "AZURE"
-    region       = "australiaeast"
-  )
-]}
+kafka_clusters = [
+{
+  display_name = "Cluster_0"
+  availability = "SINGLE_ZONE"
+  cloud        = "AZURE"
+  region       = "australiaeast"
+},
+{
+  display_name = "Cluster_1"
+  availability = "SINGLE_ZONE"
+  cloud        = "AZURE"
+  region       = "australiaeast"
+}
+]
