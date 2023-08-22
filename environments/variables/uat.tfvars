@@ -1,4 +1,4 @@
 environment = "uat"
-cloud       = "Azure"
+cloud       = "AZURE"
 region      = "australiaeast"
 package     = "ESSENTIALS"

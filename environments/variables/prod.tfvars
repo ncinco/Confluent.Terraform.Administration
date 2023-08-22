@@ -1,4 +1,4 @@
 environment = "prod"
-cloud       = "Azure"
+cloud       = "AZURE"
 region      = "australiaeast"
 package     = "ESSENTIALS"
