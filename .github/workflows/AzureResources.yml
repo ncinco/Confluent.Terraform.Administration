@@ -3,18 +3,18 @@ name: 'AzureResources'
 on:
   workflow_dispatch:
 
+env:
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SKIP_PROVIDER_REGISTRATION: true
+  TERM: linux
+
 jobs:
   dev:
     name: 'dev'
     environment: dev
-    env:
-      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_SKIP_PROVIDER_REGISTRATION: true
-      
-      TERM: linux
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -45,14 +45,6 @@ jobs:
     name: 'uat'
     environment: uat
     needs: dev
-    env:
-      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_SKIP_PROVIDER_REGISTRATION: true
-      
-      TERM: linux
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -83,14 +75,6 @@ jobs:
     name: 'prod'
     environment: prod
     needs: uat
-    env:
-      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_SKIP_PROVIDER_REGISTRATION: true
-      
-      TERM: linux
     runs-on: ubuntu-latest
     defaults:
       run:
