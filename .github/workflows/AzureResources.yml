@@ -11,16 +11,17 @@ env:
   ARM_SKIP_PROVIDER_REGISTRATION: true
   TERM: linux
 
+defaults:
+  run:
+    shell: bash
+    working-directory: ./azureresources
+
 jobs:
   dev:
     name: 'dev'
     environment: dev
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./azureresources
- 
+
     steps:
     - uses: hashicorp/setup-terraform@v2
 
@@ -46,10 +47,6 @@ jobs:
     environment: uat
     needs: dev
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./azureresources
   
     steps:
     - uses: hashicorp/setup-terraform@v2
@@ -76,10 +73,6 @@ jobs:
     environment: prod
     needs: uat
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./azureresources
   
     steps:
     - uses: hashicorp/setup-terraform@v2
