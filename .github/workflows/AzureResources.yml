@@ -27,27 +27,19 @@ jobs:
     - name: 'Checkout'
       id: checkout
       uses: actions/checkout@v3
-
-    - name: 'Terraform Format'
-      id: format
-      run: terraform fmt
          
     - name: 'Terraform Init'
       id: init
-      run: terraform init --backend-config=backend_dev.conf
+      run: terraform init --backend-config=./backends/backend_dev.conf
  
-    - name: 'Terraform Validate'
-      id: validate
-      run: terraform validate
-
     - name: 'Terraform Plan'
       id: plan
-      run: terraform plan
+      run: terraform plan -var-file=./variables/dev.tfvars
  
     - name: Terraform Apply
       id: apply
       if: github.ref == 'refs/heads/main'
-      run: terraform apply --auto-approve
+      run: terraform apply -var-file=./variables/dev.tfvars --auto-approve
 
   uat:
     name: 'uat'
@@ -74,26 +66,18 @@ jobs:
       id: checkout
       uses: actions/checkout@v3
 
-    - name: 'Terraform Format'
-      id: format
-      run: terraform fmt
-          
     - name: 'Terraform Init'
       id: init
-      run: terraform init --backend-config=backend_uat.conf
-  
-    - name: 'Terraform Validate'
-      id: validate
-      run: terraform validate
-
+      run: terraform init --backend-config=./backends/backend_uat.conf
+ 
     - name: 'Terraform Plan'
       id: plan
-      run: terraform plan
-  
+      run: terraform plan -var-file=./variables/uat.tfvars
+ 
     - name: Terraform Apply
       id: apply
       if: github.ref == 'refs/heads/main'
-      run: terraform apply --auto-approve
+      run: terraform apply -var-file=./variables/uat.tfvars --auto-approve
 
   prod:
     name: 'prod'
@@ -120,23 +104,15 @@ jobs:
       id: checkout
       uses: actions/checkout@v3
 
-    - name: 'Terraform Format'
-      id: format
-      run: terraform fmt
-          
     - name: 'Terraform Init'
       id: init
-      run: terraform init --backend-config=backend_prod.conf
-  
-    - name: 'Terraform Validate'
-      id: validate
-      run: terraform validate
-
+      run: terraform init --backend-config=./backends/backend_prod.conf
+ 
     - name: 'Terraform Plan'
       id: plan
-      run: terraform plan
-  
+      run: terraform plan -var-file=./variables/prod.tfvars
+ 
     - name: Terraform Apply
       id: apply
       if: github.ref == 'refs/heads/main'
-      run: terraform apply --auto-approve
+      run: terraform apply -var-file=./variables/prod.tfvars --auto-approve
