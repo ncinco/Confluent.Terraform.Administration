@@ -10,14 +10,33 @@ terraform {
     }
   }
 
-  backend "azurerm" {
-    resource_group_name  = "Terraform_State"
-    storage_account_name = "confluentstate"
-    container_name       = "administration"
-    key                  = "cluster.tfstate"
-  }
+  backend "azurerm" {}
 }
 
 provider "azurerm" {
   features {}
+}
+
+resource "confluent_environment" "dev" {
+  display_name = "dev"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "confluent_environment" "uat" {
+  display_name = "uat"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "confluent_environment" "prod" {
+  display_name = "prod"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
