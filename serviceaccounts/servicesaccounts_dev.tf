@@ -1,5 +1,5 @@
 resource "confluent_service_account" "service_account_cluster_operator_dev" {
-  display_name = "Cluster Operator DEV"
+  display_name = "cluster-operator-dev"
   description  = "Cluster Operator DEV"
 }
 
