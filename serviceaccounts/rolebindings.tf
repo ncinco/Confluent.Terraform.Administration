@@ -1,8 +1,3 @@
-resource "confluent_service_account" "service_account_cluster_operator_dev" {
-  display_name = "cluster-operator-dev"
-  description  = "Cluster Operator DEV"
-}
-
 /* resource "confluent_role_binding" "role_binding_cluster_operator_dev_cluster_0" {
   principal   = "User:${confluent_service_account.service_account_cluster_operator_dev.id}"
   role_name   = "Operator"
