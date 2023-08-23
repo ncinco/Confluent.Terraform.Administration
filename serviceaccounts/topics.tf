@@ -1,4 +1,4 @@
-resource "confluent_kafka_topic" "orders" {
+/* resource "confluent_kafka_topic" "orders" {
   kafka_cluster {
     id = "lkc-r2ozw7"
   }
@@ -12,4 +12,4 @@ resource "confluent_kafka_topic" "orders" {
   lifecycle {
     prevent_destroy = true
   }
-}
+} */
