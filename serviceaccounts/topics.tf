@@ -5,8 +5,8 @@ resource "confluent_kafka_topic" "orders" {
   topic_name         = "orders"
   rest_endpoint      = "https://pkc-4n66v.australiaeast.azure.confluent.cloud:443"
   credentials {
-    key    = "MSGUP6HLIGJKOEJC"
-    secret = "xhYeUxCJDPwniIXIOEzQDUoguY9zr6f2M/vMK1uvvZ7DYTJIkFDM1wFGxdKtEWVl"
+    key    = "GAPI3WNWUS2AQPXJ"
+    secret = "3N317jyoKg0UU9ni2Sg5ZXo3WRd5OU8+24ggr/QRuHrsfnu98C0rQIs/eipEeg/0"
   }
 
   lifecycle {
