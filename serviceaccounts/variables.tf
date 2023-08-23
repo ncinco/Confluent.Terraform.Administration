@@ -23,3 +23,12 @@ variable "role_bindings_clusters" {
     cluster_id  = string
   }))
 }
+
+variable "topics" {
+  description = "List of kafka topic(s) for a cluster"
+  type = list(object({
+    name = string
+    partitions_count = number
+    cleanup_policy = string
+  }))
+}

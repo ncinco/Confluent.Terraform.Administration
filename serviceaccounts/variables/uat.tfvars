@@ -15,3 +15,8 @@ role_bindings_clusters = [
     cluster_id  = "lkc-gkyjrm"
   }
 ]
+
+topics = [
+  { name = "accounts", partitions_count = 3, cleanup_policy = "compact" },
+  { name = "transactions", partitions_count = 3, cleanup_policy = "compact" }
+]
