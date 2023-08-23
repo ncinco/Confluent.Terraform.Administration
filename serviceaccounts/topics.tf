@@ -2,7 +2,7 @@ resource "confluent_kafka_topic" "kafka_topics" {
   for_each           = { for topic in var.topics : topic.name => topic }
   
   kafka_cluster {
-    id = var.cluster_id
+    id = "lkc-ny30qd"
   }
   topic_name         = each.value.name
   partitions_count   = each.value.partitions_count
