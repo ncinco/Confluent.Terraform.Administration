@@ -5,8 +5,8 @@
   topic_name         = "orders"
   rest_endpoint      = "https://pkc-4n66v.australiaeast.azure.confluent.cloud:443"
   credentials {
-    key    = "IMXAE45QTPK7UCQB"
-    secret = "I7kRcZDy/39FMgltA1gRaMALGs4xlm0VSVbsrMKBu21HiMgab34AE44rp2uVbtTv"
+    key    = "TBMOGWKERJWXJPUQ"
+    secret = "CmrEG9kfDhYPkjIjfxAxTD/gZLRwPcTxNapRlK09keYI50f+vaXJXPi9vJrZPH2C"
   }
 
   lifecycle {
