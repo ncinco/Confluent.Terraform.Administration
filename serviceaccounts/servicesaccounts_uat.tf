@@ -1,6 +1,6 @@
 resource "confluent_service_account" "service_account_cluster_operator_uat" {
-  display_name = "Cluster Operator (uat)"
-  description  = "Cluster Operator (uat)"
+  display_name = "Cluster Operator UAT"
+  description  = "Cluster Operator UAT"
 }
 
 resource "confluent_role_binding" "role_binding_cluster_operator_uat_cluster_0" {
