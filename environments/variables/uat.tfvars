@@ -1,4 +1,5 @@
 environment     = "uat"
+environment_id  = "env-prq6j2"
 
 schema_registry = {
   cloud         = "AZURE"
