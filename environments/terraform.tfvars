@@ -6,13 +6,15 @@ schema_registry = {
 
 kafka_clusters = [
 {
-  display_name = "Cluster_0"
+  request_id   = 1
+  display_name = "TrustedCluster0"
   availability = "SINGLE_ZONE"
   cloud        = "AZURE"
   region       = "australiaeast"
 },
 {
-  display_name = "Cluster_1"
+  request_id   = 2
+  display_name = "SemiTrustedCluster0"
   availability = "SINGLE_ZONE"
   cloud        = "AZURE"
   region       = "australiaeast"
