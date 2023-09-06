@@ -29,6 +29,7 @@ variable "schema_registry" {
 variable "kafka_clusters" {
   description = "Kafka Cluster Details"
   type = list(object({
+    request_id   = string
     display_name = string
     availability = string
     cloud        = string
