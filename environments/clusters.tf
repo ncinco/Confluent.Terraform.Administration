@@ -6,7 +6,7 @@ resource "confluent_kafka_cluster" "standard" {
   cloud        = each.value.cloud
   region       = each.value.region
 
-  standard {}
+  basic {}
 
   environment {
     id = confluent_environment.environment.id
