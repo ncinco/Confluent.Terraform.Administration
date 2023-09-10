@@ -18,7 +18,7 @@ env:
 defaults:
   run:
     shell: bash
-    working-directory: ./environments/semitrusted
+    working-directory: ./semitrusted
 
 jobs:
   dev:
