@@ -1,4 +1,4 @@
-name: 'Environments'
+name: 'Environments-Trusted'
  
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ env:
 defaults:
   run:
     shell: bash
-    working-directory: ./environments
+    working-directory: ./environments/trusted
 
 jobs:
   dev:

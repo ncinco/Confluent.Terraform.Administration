@@ -1,0 +1,99 @@
+name: 'Environments-SemiTrusted'
+ 
+on:
+  workflow_dispatch:
+
+env:
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SKIP_PROVIDER_REGISTRATION: true
+
+  CONFLUENT_CLOUD_API_KEY: ${{ secrets.CONFLUENT_CLOUD_API_KEY }}
+  CONFLUENT_CLOUD_API_SECRET: ${{ secrets.CONFLUENT_CLOUD_API_SECRET }}
+  
+  TERM: linux
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./environments/semitrusted
+
+jobs:
+  dev:
+    name: 'dev'
+    environment: dev
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: hashicorp/setup-terraform@v2
+
+    - name: 'Checkout'
+      id: checkout
+      uses: actions/checkout@v3
+         
+    - name: 'Terraform Init'
+      id: init
+      run: terraform init --backend-config=./backends/backend_dev.conf
+ 
+    - name: 'Terraform Plan'
+      id: plan
+      run: terraform plan -var-file=./variables/dev.tfvars
+ 
+    - name: Terraform Apply
+      id: apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply -var-file=./variables/dev.tfvars --auto-approve
+
+  uat:
+    name: 'uat'
+    environment: uat
+    needs: dev
+    runs-on: ubuntu-latest
+  
+    steps:
+    - uses: hashicorp/setup-terraform@v2
+
+    - name: 'Checkout'
+      id: checkout
+      uses: actions/checkout@v3
+
+    - name: 'Terraform Init'
+      id: init
+      run: terraform init --backend-config=./backends/backend_uat.conf
+ 
+    - name: 'Terraform Plan'
+      id: plan
+      run: terraform plan -var-file=./variables/uat.tfvars
+ 
+    - name: Terraform Apply
+      id: apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply -var-file=./variables/uat.tfvars --auto-approve
+
+  prod:
+    name: 'prod'
+    environment: prod
+    needs: uat
+    runs-on: ubuntu-latest
+  
+    steps:
+    - uses: hashicorp/setup-terraform@v2
+
+    - name: 'Checkout'
+      id: checkout
+      uses: actions/checkout@v3
+
+    - name: 'Terraform Init'
+      id: init
+      run: terraform init --backend-config=./backends/backend_prod.conf
+ 
+    - name: 'Terraform Plan'
+      id: plan
+      run: terraform plan -var-file=./variables/prod.tfvars
+ 
+    - name: Terraform Apply
+      id: apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply -var-file=./variables/prod.tfvars --auto-approve
