@@ -21,7 +21,5 @@ module "clusters" {
   source = "../modules/clusters"
 
   organisation_id = var.organisation_id
-  environment = var.environment
-  schema_registry = var.schema_registry
   kafka_clusters = var.kafka_clusters
 }

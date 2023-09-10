@@ -1,9 +1,3 @@
-schema_registry = {
-  cloud         = "AZURE"
-  region        = "southeastasia"
-  package       = "ESSENTIALS"
-}
-
 kafka_clusters = [
   {
     request_id   = 1
