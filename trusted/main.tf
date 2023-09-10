@@ -24,6 +24,4 @@ module "environments" {
   environment = var.environment
   schema_registry = var.schema_registry
   kafka_clusters = var.kafka_clusters
-
-  topics = var.topics
 }
