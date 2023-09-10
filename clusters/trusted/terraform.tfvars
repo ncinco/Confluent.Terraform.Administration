@@ -12,12 +12,5 @@ kafka_clusters = [
     availability = "SINGLE_ZONE"
     cloud        = "AZURE"
     region       = "australiaeast"
-  },
-  {
-    request_id   = 3
-    display_name = "TrustedCluster2"
-    availability = "SINGLE_ZONE"
-    cloud        = "AZURE"
-    region       = "australiaeast"
   }
 ]
