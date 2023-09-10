@@ -20,6 +20,7 @@ provider "azurerm" {
 module "clusters" {
   source = "../../modules/clusters"
 
-  organisation_id = var.organisation_id
-  kafka_clusters = var.kafka_clusters
+  organisation_id  = var.organisation_id
+  environment_id   = var.environment_id
+  kafka_clusters   = var.kafka_clusters
 }
