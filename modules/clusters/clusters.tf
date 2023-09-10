@@ -9,7 +9,7 @@ resource "confluent_kafka_cluster" "standard" {
   basic {}
 
   environment {
-    id = confluent_environment.environment.id
+    id = var.environment_id
   }
 
   lifecycle {
