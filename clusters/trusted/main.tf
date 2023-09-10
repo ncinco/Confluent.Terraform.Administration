@@ -17,8 +17,8 @@ provider "azurerm" {
   features {}
 }
 
-module "environments" {
-  source = "../modules/environments"
+module "clusters" {
+  source = "../modules/clusters"
 
   organisation_id = var.organisation_id
   environment = var.environment

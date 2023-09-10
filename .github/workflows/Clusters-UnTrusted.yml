@@ -1,4 +1,4 @@
-name: 'Environments-SemiTrusted'
+name: 'Clusters-UnTrusted'
  
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ env:
 defaults:
   run:
     shell: bash
-    working-directory: ./semitrusted
+    working-directory: ./clusters/untrusted
 
 jobs:
   dev:

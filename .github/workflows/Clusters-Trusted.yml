@@ -1,4 +1,4 @@
-name: 'Environments-UnTrusted'
+name: 'Clusters-Trusted'
  
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ env:
 defaults:
   run:
     shell: bash
-    working-directory: ./untrusted
+    working-directory: ./clusters/trusted
 
 jobs:
   dev:

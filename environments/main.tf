@@ -16,12 +16,3 @@ terraform {
 provider "azurerm" {
   features {}
 }
-
-module "environments" {
-  source = "../modules/environments"
-
-  organisation_id = var.organisation_id
-  environment = var.environment
-  schema_registry = var.schema_registry
-  kafka_clusters = var.kafka_clusters
-}
