@@ -17,10 +17,14 @@ provider "azurerm" {
   features {}
 }
 
+locals {
+  cluster_requests = yamldecode(file("${path.module}/cluster_requests.yaml"))["kafka_clusters"]
+}
+
 module "clusters" {
   source = "../../modules/clusters"
 
   organisation_id  = var.organisation_id
   environment_id   = var.environment_id
-  kafka_clusters   = var.kafka_clusters
+  kafka_clusters   = local.cluster_requests
 }
