@@ -1,7 +1,11 @@
 name: 'Clusters-UnTrusted'
  
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "./clusters/untrusted/**"
 
 env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
