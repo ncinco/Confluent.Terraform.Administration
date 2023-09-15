@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "./clusters/untrusted/**"
+      - "clusters/untrusted/**"
 
 env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
